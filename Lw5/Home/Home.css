@@ -1,3 +1,8 @@
+* {
+    margin: none;
+    padding: none;
+}
+
 .menu-img {
     width: 40px;
     height: 40px;
@@ -10,6 +15,7 @@
 }
 
 .text{
+    color: #222222;
     font-family: "GolosUI", sans-serif;
     width: 474px;
     font-size: 15px;
@@ -28,6 +34,7 @@
 .text.name{
     font-weight: 600;
     font-size: 14px;
+    margin-top: 16px;
     margin-bottom: 14px;
     height: 36px;
 }
