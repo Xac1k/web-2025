@@ -1,0 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.menu-icon-wrapper {
+    max-width: 40px;
+    padding: 8px;
+
+    margin-bottom: 16px;
+}
+
+.menu-icon-wrapper-active::after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: #222222;
+    border-radius: 50%;
+    display: block;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    background-position: center center;
+    background-size: contain;
+}
+
+.menu-icon-home {
+    background-image: url(../Images/Home-Icon.png);
+}
+
+.menu-icon-profile {
+    background-image: url(../Images/Profile-Icon.png);
+}
+
+.menu-icon-add {
+    background-image: url(../Images/Add-Icon.png);
+}

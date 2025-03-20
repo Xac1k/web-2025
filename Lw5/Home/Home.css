@@ -1,0 +1,57 @@
+.menu-img {
+    width: 40px;
+    height: 40px;
+}
+
+.avatar{
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+}
+
+.text{
+    font-family: "GolosUI", sans-serif;
+    width: 474px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.15px;
+    line-height: 18px;
+    margin: 0px 0px 0px;
+}
+
+.text.past{
+    width: auto;
+    color: #22222280;
+    margin-top: 8px;
+}
+
+.text.name{
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 14px;
+    height: 36px;
+}
+
+.like{
+    cursor: pointer;
+    font-family: "GolosUI", sans-serif;
+    width: 68px;
+    height: 30px;
+    line-height: 18px;
+    background-color: #2222220D;
+    border-radius: 8px;
+    margin: 0px 0px 16px;
+    box-sizing: border-box;
+    padding: 6px 10px 6px;
+}
+
+.Heart{
+    width: 16px;
+    height: 18px;
+}
+
+.image{
+    width: 474px;
+    height: 474px;
+    margin-bottom: 16px;
+}

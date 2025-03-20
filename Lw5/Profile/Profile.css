@@ -1,0 +1,59 @@
+.menu-img {
+    width: 40px;
+    height: 40px;
+}
+
+.profile-frame{
+    text-align: center;
+}
+
+.post-image {
+    width: 322px;
+    height: 322px;
+}
+
+.avatar {
+    width: 123px;
+    height: 123px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.albom.text {
+    width: 101px;
+    height: 30px;
+    background-color: #F2F3F5;
+    border-radius: 6px;
+    padding: 6px 8px 6px;
+    margin: 0px auto 42px;
+    letter-spacing: -0.15px;
+    box-sizing: border-box;
+}
+
+.albom-img {
+    width: 16px;
+    height: 16px;
+}
+
+.text {
+    font-family: "GolosUI", sans-serif;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.text.name {
+    font-weight: 600;
+    font-size: 32px;
+    letter-spacing: -0.25px;
+    line-height: 32px;
+    margin: 0px auto 10px;
+}
+
+.text.about {
+    width: 361px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.15px;
+    margin: 0px auto 12px;
+}
