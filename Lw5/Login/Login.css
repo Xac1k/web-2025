@@ -1,8 +1,15 @@
 * {
-    font-family: "GolosUI", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.login-img {
+    height: 501px;
+    width: 462px;
 }
 
 .header {
+    font-family: "GolosUI", sans-serif;
     font-size: 140px;
     width: 385px;
     height: 180px;
@@ -10,21 +17,24 @@
     letter-spacing: -1.5px;
     font-weight: 700;
     color: #222222;
-    margin: 0px;
+    margin: 0;
 }
 
-.text {
+.text-form {
+    font-family: "GolosUI", sans-serif;
     display: block;
+    color: #222222;
     margin-bottom: 5px;
     font-size: 15px;
     font-weight: 400;
+    width: 343px;
     margin-bottom: 5px;
 }
 
 .note {
     color: #808080;
     font-size: 13px;
-    margin: 0px 0px 16px;
+    margin: 0 0 16px;
 }
 
 .eye-off {
@@ -35,15 +45,14 @@
 .continue {
     border-radius: 10px;
     background-color: #222222;
-    border: 0px;
+    border: 0;
     width: 343px;
-    height: 44px;
+    height: 48px;
     font-size: 16px;
     color: #FFFFFF;
-    cursor: pointer;
 }
 
-.input {
+.input-field {
     display: block;
     border-radius: 10px;
     background-color: #F2F3F5;
@@ -55,7 +64,7 @@
     height: 44px;
 }
 
-.input.password {
+.input-field.password {
     display: inline;
     margin-bottom: 32px;
 }

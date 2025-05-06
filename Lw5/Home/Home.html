@@ -2,39 +2,15 @@
 <html lang="ru">
     <head>
         <meta charset="UTF-8">
-
         <title>Домашняя страничка</title>
-
-        <link  rel="stylesheet" href = "../Home/Home.css">
-        <link rel="stylesheet" href="../Font/font.css">
+        <link rel="stylesheet" href="../font/font.css">
+        <link  rel="stylesheet" href="../home/home.css">
     </head>
     <body>
-        <div>
-            <div>
-                <img src = "Home_dot.png" class = 'menu-img' alt="Home-icon">
-            </div>
-            <div>
-                <a href = "http://localhost:8001/Profile">
-                    <img src = "Profile.png" class = 'menu-img' alt="Menu-icon">
-                </a>
-            </div>
-            <div>
-                <img src = "Add.png" class = 'menu-img' alt="Add-icon">
-            </div>
-        </div>
-        
-        <p class="text name">
-            <img class = "avatar" src="Avatar.png" alt="avatar">
-            Ваня Денисов
-        </p>
-        <div>
-            <img class = "image" src="Post.png" alt="image">
-            <p class = 'like'>
-                <img class = 'Heart' src = 'Heart.png' alt="Like">
-                203 
-            </p>
-            <p class = 'text'>Так красиво сегодня на улице! Настоящая зима)) Вспоминается Бродский: «Поздно ночью, в уснувшей долине, на самом дне, в городке, занесенном снегом по ручку двери...» </p>
-            <p class = 'text past'>2 часа назад</p>
+        <div class="menu">
+            <img src="../image/home_dot.png" class="menu-img first" alt="Иконка дома">
+            <img src="../image/profile.png" class="menu-img" alt="Иконка меню" onclick="window.location.href ='http://localhost:8001/profile'">
+            <img src="../image/add.png" class="menu-img" alt="Иконка добавления поста">
         </div>
     </body>
 </html>

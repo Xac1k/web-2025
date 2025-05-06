@@ -1,59 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    position: fixed;
+    margin-top: 16px;
+    top: 0;
+}
+
 .menu-img {
+    display: block;
+    cursor: pointer;
     width: 40px;
     height: 40px;
+    margin-left: 16px;
+    margin-bottom: 16px;
 }
 
 .profile-frame{
-    text-align: center;
+    margin: 97px auto 0;
+    width: 974px;
 }
 
 .post-image {
+    border-radius: 2px;
     width: 322px;
     height: 322px;
 }
 
 .avatar {
+    display: block;
     width: 123px;
     height: 123px;
     border-radius: 16px;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
 }
 
-.albom.text {
-    width: 101px;
+.album.text {
+    width: fit-content;
     height: 30px;
     background-color: #F2F3F5;
     border-radius: 6px;
-    padding: 6px 8px 6px;
-    margin: 0px auto 42px;
+    padding: 6px 10px 6px;
+    margin: 0 auto 42px;
     letter-spacing: -0.15px;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 400;
     box-sizing: border-box;
 }
 
-.albom-img {
+.album-img {
     width: 16px;
     height: 16px;
+    margin: 0 6px 0 0;
 }
 
 .text {
+    color: #222222;
     font-family: "GolosUI", sans-serif;
-    margin: 10px auto;
-    text-align: center;
 }
 
 .text.name {
-    font-weight: 600;
+    width: 361px;
+    text-align: center;
+    font-weight: 500;
     font-size: 32px;
     letter-spacing: -0.25px;
     line-height: 32px;
-    margin: 0px auto 10px;
+    margin: 0 auto 10px;
 }
 
 .text.about {
     width: 361px;
+    text-align: center;
     font-weight: 400;
     font-size: 15px;
     line-height: 18px;
     letter-spacing: -0.15px;
-    margin: 0px auto 12px;
+    margin: 0 auto 12px;
 }

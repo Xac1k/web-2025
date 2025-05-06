@@ -4,27 +4,23 @@
         <meta charset="UTF-8">
 
         <title>Логинизация пользователей</title>
-        
-        <link  rel="stylesheet" href="../Login/Login.css">
-        <link rel="stylesheet" href="../Font/font.css">
+
+        <link rel="stylesheet" href="../font/font.css">
+        <link  rel="stylesheet" href="../login/login.css">
     </head>
     <body>
-
         <p class="header">Войти</p>
-        <img src="Log.png" alt="Profile picture">
-
-
-        
-        <form class="form">
-            <label class="text" for = "email">Электропочта</label>
-            <input id = "email" type = "email" class="input">
-            <p class="note text">Введите электронную почту в формате *****@***.**</p>
-            <label for = "password" class="text">Пароль</label>
+        <img src="../image/login_frame.png" class="login-img"alt="Заставка">
+        <form>
+            <label class="text-form" for="email">Электропочта</label>
+            <input id="email" type="email" class="input-field">
+            <p class="note text-form">Введите электронную почту в формате *****@***.**</p>
+            <label for="password" class="text-form">Пароль</label>
             <div>
-                <input type = "password" id = "password" class="input password">
-                <img class="eye-off" src="eye-off.png" alt="Скрыть/раскрыть пароль">
+                <input type="password" id="password" class="input-field password">
+                <img class="eye-off" src="../image/eye_off.png" alt="Скрыть/раскрыть пароль">
             </div>
-            <input type = "button" class="continue" value="Продолжить" onclick="window.location.href ='http://localhost:8001/home'">
+            <input type="button" class="continue" value="Продолжить" onclick="window.location.href ='http://localhost:8001/home'">
         </form>
     </body>
 </html>
