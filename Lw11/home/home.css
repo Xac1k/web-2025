@@ -153,6 +153,7 @@ body {
     letter-spacing: -0.15px;
     color: #222222;
     max-height: 37px;
+    line-clamp: 2;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;

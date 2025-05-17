@@ -1,9 +1,4 @@
 <?php
-
-const FILE_USERS = 'users.json';
-const FILE_POSTS = 'posts.json';
-const FILE_ERROR_UNKNOWN_USER = 'unknownUser.png';
-
 require_once 'Database.php';
 
 function getDiferenceTime(int $created_time): string
@@ -15,18 +10,32 @@ function getDiferenceTime(int $created_time): string
 function getHTMLPost(array $data): string
 {
     return <<<HTML
-            <div class="frame {$data['modifierPost']}"> 
-                <div class="block-avatar">
-                    <img class="avatar" src="/image/{$data['img_avatar']}" alt="Аватар пользователя">
-                    <span class="text name">{$data['name']}</span>
+            <div class="post-frame">
+                <div class="post-frame__header">
+                    <img src="../image/{$data['img_avatar']}" alt="Аватарка" class="post-frame__foto">
+                    <h1 class="post-frame__name">{$data["name"]}</h1>
+                    <img src="../image/edit.png" alt="Редактор иконка" class="post-frame__edit">
                 </div>
-                <img class="image" src="/image/{$data['urls'][0]}" alt="Изображение">
-                <div class="like">
-                    <img class = "heart" src="/image/heart.png" alt="Сердечко">
-                    <span>{$data['like']}</span> 
+
+                <div class="post-frame__post">
+                    <img src="../image/{$data['urls'][0]}" alt="Фото поста" class="post-frame__images">
+                    <img src="../image/leftSlider.png" alt="Слайдер" class="post-frame__slider_left">
+                    <img src="../image/rigthSlider.png" alt="Слайдер" class="post-frame__slider_right">
+                    <div class="post-frame__counter-foto">1/3</div>
                 </div>
-                <p class="text">{$data['text']}</p>
-                <p class="text past">{$data['time']}</p>
+
+                <div class="post-frame__likes">
+                    <img src="../image/heart.png" alt="Лайк иконка" class="post-frame__heart">
+                    <span class="post-frame__counter-like">{$data['like']}</span>
+                </div>
+
+                <div class="post-frame__text">
+                    <span class="post-frame__inner-text">
+                        {$data['text']}
+                    </span>
+                    <div class="post-frame__more">ещё</div> 
+                </div>
+                <div class="post-frame__time-ago">{$data['time']}</div>
             </div>
             HTML;
 }
@@ -40,6 +49,7 @@ if (!is_bool($DB)) {
     $posts = getPostsFromDB($DB);
 
     if (is_array($posts)) {
+        $resHTML = '';
         foreach ($posts as $post) {
             $user = getUserFromDB($DB, $post['created_by']);
             $urls = getURLImages($DB, $post['id']);
@@ -51,9 +61,10 @@ if (!is_bool($DB)) {
             $info['time'] = $time;
             
             if ($user[0]['id'] == $query OR is_null($query)) {
-                echo getHTMLPost($info);
+                $resHTML.= getHTMLPost($info);
                 $modifierPost = '';
             }
         }
+        echo "<div class='working-frame'>".$resHTML.'</div>';
     }
 }
