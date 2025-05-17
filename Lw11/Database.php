@@ -10,40 +10,42 @@ function connectDataBase(): PDO
 
 function getPostsFromDB(PDO $con): array
 {
-    $query = <<<SQL
+    $queryToPost = <<<SQL
         SELECT * 
         FROM post
     SQL;
 
-    $result = $con->query($query);
+    $result = $con->query($queryToPost);
     return ($result->fetchAll(mode: PDO::FETCH_ASSOC));
 }
 
 function getURLImages(PDO $con, int $postId): array
 {
-    $query = <<<SQL
+    $queryToPost = <<<SQL
         SELECT * 
         FROM images
         WHERE post_id = {$postId};
     SQL;
 
-    $result = $con->query($query);
-    return ($result->fetchAll(mode: PDO::FETCH_ASSOC));
+    $result = $con->query($queryToPost);
+    $data = $result->fetchAll(mode: PDO::FETCH_ASSOC);
+
+    return ($data);
 }
 
 function getUserFromDB(PDO $con, int $id): array
 {
-    $query = <<<SQL
+    $queryToPost = <<<SQL
         SELECT * 
         FROM user
         WHERE id = {$id};
     SQL;
 
-    $result = $con->query($query);
+    $result = $con->query($queryToPost);
     return ($result->fetchAll(mode: PDO::FETCH_ASSOC));
 }
 
-function getOneRecordFromUserPostURL(array $user,array $post, array $urls): array 
+function getOneRecordFromUserPostURL(array $user, array $post, array $urls): array
 {
     //( [name] => Лиза Дёмина 
     //[img_avatar] => lisa_demina.png 
@@ -58,9 +60,34 @@ function getOneRecordFromUserPostURL(array $user,array $post, array $urls): arra
     $res['created_time'] = strtotime($post['created_time']);
     $res['like'] = $post['likes'];
     $res['urls'] = [];
-    foreach ($urls as $url){
+    foreach ($urls as $url) {
         array_push($res['urls'], $url['url']);
     }
-    
+
     return $res;
+}
+
+function putPostDB(PDO $con, int $userId, string $nameImg, string $text): void
+{
+    $time = date('YmdGis', time());
+    //Save Post into DB 
+    $queryToPost = <<<SQL
+                INSERT INTO 
+                post(created_by, text, created_time, likes)
+                VALUES(?, ?, ?, ?);
+            SQL;
+    $statemant = $con->prepare($queryToPost);
+    $statemant->execute([$userId, $text, $time, 0]);
+
+    //Get post_id
+    $idPost = $con->lastInsertId('post');
+
+    //Save image into DB 
+    $queryToImages = <<<SQL
+                INSERT INTO 
+                images(post_id, url)
+                VALUES(?, ?);
+                SQL;
+    $statemant = $con->prepare($queryToImages);
+    $statemant->execute([$idPost, $nameImg]);
 }

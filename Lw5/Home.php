@@ -60,7 +60,9 @@ if (!is_bool($users) && !is_bool($posts)) {
 
     include "home/home.html";
     foreach ($posts as $post) {
-        if (!is_null($query)) {
+        $hasQuery = !is_null($query);
+
+        if ($hasQuery) {
             if (is_bool(getUserInfo($users, $query))) {
                 echo "<p style = 'text-align: center;' >Такого пользователя нет</p>";
                 break;
@@ -68,27 +70,21 @@ if (!is_bool($users) && !is_bool($posts)) {
         }
         $idUser = $post['created_by_id_user'];
         
-        if ((!is_null($query) && $query == $idUser) || is_null($query)) {
+        if (($hasQuery && $query == $idUser) || !$hasQuery) {
             $postInfo['modifierPost'] = $modifierPost;
             $postInfo['image'] = $post['image'];
             $postInfo['desription'] = $post['text_post'];
             $postInfo['like'] = $post['like'];
             $created_time = $post['created_time'];
             $userInfo = getUserInfo($users, $idUser);
-            
             $postInfo['time'] = getDiferenceTime($created_time);
-
             if (is_array($userInfo) ) {
                 $html = getHTMLPost($userInfo, $postInfo);
                 echo $html;
+                $modifierPost = '';
             }
-            $modifierPost = '';
         }
     }
 } else {
     echo 'Ошибка чтения JSON файла';
 }
-
-
-
-?>

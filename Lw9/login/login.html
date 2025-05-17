@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head> 
+        <meta charset="UTF-8">
+
+        <title>Логинизация пользователей</title>
+        <link rel="stylesheet" href="../font/font.css">
+        <link  rel="stylesheet" href="../login/login.css">
+        <script src="login.js"></script>
+    </head>
+    <body>
+        <div class="login-frame">
+            <div class="header">
+                <h1 class="header__text">Войти</h1>
+                <img src="../image/login_frame.png" alt="Изображение на страничке логинации" class="header__img">
+            </div>
+            <form class="login-form" method="post">
+                
+                <div class="data-field">
+                    <div class="error" id="error">
+                        <img src="../image/error.png" alt="" class="error__img">
+                        <div class="error__text">Поля обязательные</div>
+                    </div>
+                    <div class="value-param">
+                        <label for="login" class="value-param__header">Электропочта</label>
+                        <input type="text" class="value-param__field" id="login" name='login' required>
+                        <div class="value-param__note">Введите электропочту в формате *****@***.**</div>
+                    </div>
+                    <div class="value-param">
+                        <label for="password" class="value-param__header">Пароль</label>
+                        <div class="value-password">
+                            <input type="password" class="value-password__input" id="password" name="password" required>
+                            <img src="../image/eye_off.png" alt="Глазок" class="value-password__img" id="eye">
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="button-submit" id="submit">Продолжить</button>
+            </form>
+        </div>
+    </body>
+</html>

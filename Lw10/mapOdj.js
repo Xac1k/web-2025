@@ -1,12 +1,10 @@
-function mapObject(arr, statement) { //сдать на следующей паре
+function mapObject(arr, statement) { //сдать на следующей паре 10.6
     let res = {}
     let f = statement
-    for (let i in arr){
-        res[i] = f(arr[i])
-    }
-    console.log(res)
+    for (let i in arr) res[i] = f(arr[i])
+    return res
 }
 
 const nums = { a: 1, b: 2, c: 3 };
 
-mapObject(nums, x => x**8)
+console.log(mapObject(nums, x => x**8))

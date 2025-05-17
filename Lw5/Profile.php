@@ -142,7 +142,7 @@ if ($query && !is_bool($users) && !is_bool($posts)) {
         if (!isset($_GET['id']))
             echo 'Невведён пользователь';
         elseif (!is_numeric($_GET['id']))
-            echo 'Некоректно пользователь';
+            echo 'Некоректный id пользователь';
     }
     if (is_bool($users) || is_bool($posts)) {
         echo 'Ошибка чтения JSON файла';

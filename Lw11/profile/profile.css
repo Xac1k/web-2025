@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+}
+
+.menu {
+    position: fixed;
+    width: 72px;
+    padding: 40px 0 0 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: start;
+    align-items: center;
+    gap: 16px
+}
+
+.menu__img {
+    width: 40px;
+    height: 40px;
+}
+
+.person-frame {
+    padding-top: 97px;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+}
+
+.person-frame__foto {
+    margin-bottom: 20px;
+    width: 123px;
+    height: 123px;
+    border-radius: 16px;
+}
+
+.person-frame__name {
+    margin-bottom: 10px;
+    font-family: "Golos UI", sans-serif;
+    font-weight: 500;
+    font-size: 32px; 
+    line-height: 32px;
+    letter-spacing: -0.25px;
+}
+
+.person-frame__description {
+    margin-bottom: 12px;
+    font-family: "Golos UI", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.15px;
+    max-width: 361px;
+    text-align: center;
+}
+
+.count-posts {
+    box-sizing: border-box;
+    display: flex;
+    width: fit-content;
+    height: 30px;
+    padding: 6px 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: #F2F3F5;
+    border-radius: 6px;
+    gap: 6px;
+    margin-bottom: 42px;
+}
+
+.count-posts__icon {
+    height: 16px;
+    width: 16px;
+}
+
+.count-posts_text {
+    font-family: "Golos UI", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.15px;
+}
+
+.group-images__images {
+    display: flex;
+    justify-content: start;
+    gap: 2.48px;
+    border-radius: 2px;
+}
+
+.group-images {
+    display: flex;
+    justify-content: space-between;
+    gap: 2.48px;
+    flex-flow: column;
+}
+
+.image {
+    width: 322.346923828125px;
+    height: 322.346923828125px;
+}

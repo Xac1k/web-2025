@@ -1,4 +1,4 @@
-const users = [ //сдать на следующей паре
+const users = [ //сдать на следующей паре 10.5
     { id: 1, name: "Alice" },
     { id: 2, name: "Bob" },
     { id: 3, name: "Charlie" }

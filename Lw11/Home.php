@@ -43,7 +43,7 @@ if (!is_bool($DB)) {
         foreach ($posts as $post) {
             $user = getUserFromDB($DB, $post['created_by']);
             $urls = getURLImages($DB, $post['id']);
-            $infoPost = getOneRecordFromUserPostURL($user, $post, $urls);
+            $infoPost = getOneRecordFromUserPostURL($user, $post, urls: $urls);
             $time = getDiferenceTime($infoPost['created_time']);
 
             $info = $infoPost;
