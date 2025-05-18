@@ -1,7 +1,7 @@
 const elem = document.getElementById('load-file');
 const picture = document.getElementById('loading-file');
 const submite = document.getElementById('submite');
-const text = document.getElementsById('text-field');
+const text = document.getElementById('text-field');
 const load_button = document.getElementById('load_button');
 const load_img = document.getElementById('load_img');
 

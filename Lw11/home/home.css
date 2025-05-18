@@ -6,6 +6,7 @@
 body {
     height: 100vh;
     width: 100vw;
+    overflow-x: hidden;
 }
 
 .menu {
@@ -71,8 +72,13 @@ body {
 }
 
 .post-frame__images {
+    position: absolute;
     width: 474px;
     height: 474px;
+}
+
+.post-frame__images_hidden {
+    display: none;
 }
 
 .post-frame__slider_left {
@@ -137,14 +143,21 @@ body {
     color: #222222;
 }
 
-.post-frame__text {
+.post-frame__text_nowraped-more {
+    position: relative;
+    width: 474px;
+    max-height: none;
+    margin-bottom: 25px;
+}
+
+.post-frame__text_wraped-more {
     position: relative;
     width: 474px;
     max-height: 37px;
     margin-bottom: 25px;
 }
 
-.post-frame__inner-text {
+.post-frame__inner-text_show {
     width: 474px;
     font-family: "Golos UI", sans-serif;
     font-weight: 400;
@@ -152,7 +165,24 @@ body {
     line-height: 18px;
     letter-spacing: -0.15px;
     color: #222222;
+    max-height: fit-content;
+    line-clamp: 2;
+    display: -webkit-box;
+    -webkit-line-clamp: none;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post-frame__inner-text_hidden {
+    width: 474px;
     max-height: 37px;
+    font-family: "Golos UI", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.15px;
+    color: #222222;
     line-clamp: 2;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -180,4 +210,70 @@ body {
     line-height: 18px;
     letter-spacing: -0.15px;
     color: #808080;
+}
+
+.modal-frame_hidden {
+    display: none;
+}
+
+.modal-frame_active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #22222280;
+    position: fixed;
+    overflow-x: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+.modal-frame_image-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 636px;
+    height: 636px;
+}
+
+.modal-frame_image {
+    position: absolute;
+    width: 636px;
+    height: 636px;
+}
+
+.model-frame_sliderR {
+    top: 307px;
+    right: 16px;
+}
+
+.model-frame_sliderL {
+    top: 307px;
+    left: 16px;
+}
+
+.model-frame_counter {
+    background-color: none;
+    position: absolute;
+    margin: 0 auto;
+    bottom: -33px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 18px;
+    padding: 0 10px;
+    border-radius: 20px;
+    font-family: "Golos UI", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.15px;
+    color: #FFFFFF;
+}
+
+.modal-frame_esc {
+    position: absolute;
+    height: 36px;
+    width: 36px;
+    top: -34px;
+    right: 0;
 }

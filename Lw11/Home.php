@@ -7,8 +7,45 @@ function getDiferenceTime(int $created_time): string
     return "$time" . ' ч назад';
 }
 
+function getImageHTML(array $urls): string {
+    foreach($urls as $url){
+        if (isset($res)) {
+            $res .= <<<HTML
+                    <img src="../image/{$url}" alt="Фото поста" class="post-frame__images post-frame__images_hidden">
+                HTML;
+        } else {
+            $res = <<<HTML
+                    <img src="../image/{$url}" alt="Фото поста" class="post-frame__images">
+                HTML;
+        }
+    }
+    return $res;
+}
+
+function getPostImageFrame(array $data): array {
+    if (count($data['urls']) > 1) {
+        $count = count($data['urls']);
+        $slider = <<<HTML
+                        <img src="../image/leftSlider.png" alt="Слайдер" class="post-frame__slider_left">
+                        <img src="../image/rigthSlider.png" alt="Слайдер" class="post-frame__slider_right">
+                        <div class="post-frame__counter-foto">1/{$count}</div>
+                    HTML;
+        $imageHTML = getImageHTML($data['urls']);
+    } else {
+        $imageHTML = <<<HTML
+                        <img src="../image/{$data['urls'][0]}" alt="Фото поста" class="post-frame__images">
+                    HTML;
+        $slider = '';
+    }
+
+    return ['imageHTML' => $imageHTML,
+            'slider' => $slider];
+}
+
 function getHTMLPost(array $data): string
 {
+    $imagePost_frame = getPostImageFrame($data);
+
     return <<<HTML
             <div class="post-frame">
                 <div class="post-frame__header">
@@ -16,21 +53,16 @@ function getHTMLPost(array $data): string
                     <h1 class="post-frame__name">{$data["name"]}</h1>
                     <img src="../image/edit.png" alt="Редактор иконка" class="post-frame__edit">
                 </div>
-
                 <div class="post-frame__post">
-                    <img src="../image/{$data['urls'][0]}" alt="Фото поста" class="post-frame__images">
-                    <img src="../image/leftSlider.png" alt="Слайдер" class="post-frame__slider_left">
-                    <img src="../image/rigthSlider.png" alt="Слайдер" class="post-frame__slider_right">
-                    <div class="post-frame__counter-foto">1/3</div>
+                    <div class = "image-frame_inner">{$imagePost_frame['imageHTML']}</div>
+                    {$imagePost_frame['slider']}
                 </div>
-
                 <div class="post-frame__likes">
                     <img src="../image/heart.png" alt="Лайк иконка" class="post-frame__heart">
                     <span class="post-frame__counter-like">{$data['like']}</span>
                 </div>
-
-                <div class="post-frame__text">
-                    <span class="post-frame__inner-text">
+                <div class="post-frame__text_wraped-more">
+                    <span class="post-frame__inner-text_hidden">
                         {$data['text']}
                     </span>
                     <div class="post-frame__more">ещё</div> 
@@ -65,6 +97,6 @@ if (!is_bool($DB)) {
                 $modifierPost = '';
             }
         }
-        echo "<div class='working-frame'>".$resHTML.'</div>';
+        echo "<div class='working-frame'>".$resHTML."<div class='modal-frame_hidden'></div>".'</div>';
     }
 }
