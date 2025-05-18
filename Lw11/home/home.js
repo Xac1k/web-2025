@@ -69,7 +69,6 @@ function addEventsMore(main_elt) {
 }
 
 function addEventsSlider(slider_elts) {
-
     for (let main_idx = 0; main_idx < slider_elts.length; main_idx++) {
         const sliderL_elt = slider_elts[main_idx];
         const parent_elt = sliderL_elt.parentElement;
@@ -97,14 +96,14 @@ function addEventsSlider(slider_elts) {
 }
 
 function addEventEsc(esc_elt, modal_elt) {
-esc_elt.addEventListener("click", () => {
-                modal_elt.innerHTML = '';
-                modal_elt.className = 'modal-frame_hidden';
-                esc_elt.removeEventListener("click", () => {
+    esc_elt.addEventListener("click", () => {
                     modal_elt.innerHTML = '';
                     modal_elt.className = 'modal-frame_hidden';
-                });
-            })
+                    esc_elt.removeEventListener("click", () => {
+                        modal_elt.innerHTML = '';
+                        modal_elt.className = 'modal-frame_hidden';
+                    });
+                })
 }
 
 function addEventModal(containers_img, modal_elt) {
@@ -134,34 +133,46 @@ function addEventModal(containers_img, modal_elt) {
 
             addEventEsc(esc, modal_elt);
 
+            document.addEventListener("keyup", (e) => {
+                if (e.key == 'Escape' && !e.repeat) {
+                    modal_elt.innerHTML = '';
+                    modal_elt.className = 'modal-frame_hidden';
+                }
+            });
+
             if(sliderR_modal_elt && sliderL_modal_elt && counter_elt_modal) {
-                console.log(sliderR_modal_elt)
+                let counter = 0;
+                hideImage(modal_images, counter)
+                sliderR_modal_elt.classList.add('model-frame_sliderR');
+                sliderL_modal_elt.classList.add('model-frame_sliderL');
+                counter_elt_modal.textContent = counter + 1 + ' из ' + modal_images.length;
+                counter_elt_modal.className = 'model-frame_counter';
+
+                sliderL_modal_elt.addEventListener("click", () => {
+                    modal_images[counter].classList.add(imageClassHide);
+                    counter = counter == 0 ? modal_images.length - 1 : counter - 1;
+                    counter_elt_modal.textContent = counter + 1 + ' из ' + modal_images.length;
+                    modal_images[counter].classList.remove(imageClassHide);
+                })
+
+                sliderR_modal_elt.addEventListener("click", () => {
+                    modal_images[counter].classList.add(imageClassHide);
+                    counter = counter == modal_images.length - 1 ? 0 : counter + 1;
+                    counter_elt_modal.textContent = counter + 1 + ' из ' + modal_images.length;
+                    modal_images[counter].classList.remove(imageClassHide);
+                })
             }
-
-            
-            // sliderR_modal_elt.classList.add('model-frame_sliderR');
-            // sliderL_modal_elt.classList.add('model-frame_sliderL');
-
-            
-            // counter_elt_modal.textContent = counter + 1 + ' из ' + image_elts.length;
-            // counter_elt_modal.className = 'model-frame_counter';
-
-            // sliderL_modal_elt.addEventListener("click", () => {
-            //     modal_images[counter].classList.add(imageClassHide);
-            //     counter = counter == 0 ? image_elts.length - 1 : counter - 1;
-            //     counter_elt_modal.textContent = counter + 1 + ' из ' + image_elts.length;
-            //     modal_images[counter].classList.remove(imageClassHide);
-            // })
-
-            // sliderR_modal_elt.addEventListener("click", () => {
-            //     modal_images[counter].classList.add(imageClassHide);
-            //     counter = counter == image_elts.length - 1 ? 0 : counter + 1;
-            //     counter_elt_modal.textContent = counter + 1 + ' из ' + image_elts.length;
-            //     modal_images[counter].classList.remove(imageClassHide);
-            // })
-            //console.log(sliderR_modal_elt)
-
         })
+    }
+}
+
+function hideImage(ImagesHTML, counter){
+    for (let idx = 0; idx < ImagesHTML.length; idx++) {
+        if (idx == counter) {
+            ImagesHTML[idx].classList.remove('post-frame__images_hidden');
+        } else {
+            ImagesHTML[idx].classList.add('post-frame__images_hidden');
+        }
     }
 }
 
