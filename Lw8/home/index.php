@@ -25,14 +25,17 @@ if (!is_bool($DB)) {
     if (is_array($posts)) {
         foreach ($posts as $post) {
             $user = getUserFromDB($DB, $post['created_by']);
-            $urls = getURLImages($DB, $post['id']);
-            $infoPost = getOneRecordFromUserPostURL($user, $post, urls: $urls);
-            $infoPost['time'] = getDiferenceTime($infoPost['created_time']);
-            
-            if ($user[0]['id'] == $query || !$query) {
-                $res .= getHTMLPost($infoPost);
+            if($user){
+                $urls = getURLImages($DB, $post['id']);
+                $infoPost = getOneRecordFromUserPostURL($user, $post, urls: $urls);
+                $infoPost['time'] = getDiferenceTime($infoPost['created_time']);
+                
+                if ($user[0]['id'] == $query || !$query) {
+                    $res .= getHTMLPost($infoPost);
+                }
             }
         }
+
         echo "<div class='frames'>".$res."</div>";
     }
 }
