@@ -64,7 +64,7 @@ function getOneRecordFromUserPostURL(array $user, array $post, array $urls): arr
     $res['like'] = getOrDefault($post['likes'], 0);
     $res['urls'] = [];
     foreach ($urls as $url) {
-        array_push($res['urls'], $url['url']);
+        if (isImageFormatSupported($url['url'])) array_push($res['urls'], $url['url']);
     }
 
     return $res;
