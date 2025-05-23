@@ -57,13 +57,13 @@
     font-size: 14px;
 }
 
+.frames{
+    margin-top: 73px;
+}
+
 .frame {
     width: 474px;
     margin: 0 auto 0;
-}
-
-.frame.first {
-    margin: 73px auto 0;
 }
 
 .like {

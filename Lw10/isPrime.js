@@ -29,4 +29,4 @@ function printMSG(isPrime, n) {
     }
 }
 
-isPrimeNumber([8, 9, 10, 11])
+isPrimeNumber({})

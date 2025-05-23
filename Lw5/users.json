@@ -9,6 +9,7 @@
     {
         "id": "2",
         "name": "Лиза Дёмина",
-        "img_avatar": "lisa_demina.png"
+        "img_avatar": "lisa_demina.png",
+        "description": "Привет! Я системный аналитик в ACME :) Тут моя жизнь только для самых классных!"
     }
 ]

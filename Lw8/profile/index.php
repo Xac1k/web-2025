@@ -113,7 +113,7 @@ if ($query && !is_bool($users) && !is_bool($posts)) {
     $infoUser = getUserInfo($users, $query);
 
     if ($infoUser != false) {
-        include 'profile/profile.html';
+        include 'profile.html';
 
         $infoPosts = getUserPosts($posts, $query);
         $count = $infoPosts != false ? count($infoPosts) : 0;
@@ -142,10 +142,9 @@ if ($query && !is_bool($users) && !is_bool($posts)) {
         if (!isset($_GET['id']))
             echo 'Невведён пользователь';
         elseif (!is_numeric($_GET['id']))
-            echo 'Некоректный id пользователь';
+            echo 'Некоректно пользователь';
     }
     if (is_bool($users) || is_bool($posts)) {
         echo 'Ошибка чтения JSON файла';
     }
-    
 }
