@@ -14,8 +14,7 @@
         <img src="../image/profile.png" class="menu__img" alt="Иконка меню" onclick="window.location.href ='http://localhost:8001/profile'">
         <img src="../image/add.png" class="menu__img" alt="Иконка добавления поста" onclick="window.location.href ='http://localhost:8001/addPost'">
     </div>
-    <?php $id =isset($_GET['id']) ? $_GET['id'] : '';?>
-    <form class="main-screen" method="post" <?php echo "action='API.php?id=".$id."'"?> enctype="multipart/form-data"><!-- Динамически генерировать id это нормально? -->
+    <form class="main-screen" method="POST" <?php echo "action='../API/?id=".$_GET['id']."'"?> enctype="multipart/form-data"><!-- Динамически генерировать id это нормально? -->
         <div class="loading-file" id="loading-file">
             <img src="../image/image.png" alt="Иконка изображения" id="load_img" class="loading-file__img">
             <label for="load-file" class="loading-file__button" id="load_button">Добавить фото</label>

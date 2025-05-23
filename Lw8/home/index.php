@@ -2,10 +2,11 @@
 
 const FILE_USERS = 'users.json';
 const FILE_POSTS = 'posts.json';
-const FILE_ERROR_UNKNOWN_USER = 'unknownUser.png';
+
 
 require_once '../Database.php';
-require_once 'homeHTML.php';
+require_once 'templeteHome.php';
+require_once '../utils.php';
 
 function getDiferenceTime(int $created_time): string
 {
@@ -28,7 +29,7 @@ if (!is_bool($DB)) {
             $infoPost = getOneRecordFromUserPostURL($user, $post, urls: $urls);
             $infoPost['time'] = getDiferenceTime($infoPost['created_time']);
             
-            if ($user[0]['id'] == $query OR is_null($query)) {
+            if ($user[0]['id'] == $query || !$query) {
                 $res .= getHTMLPost($infoPost);
             }
         }

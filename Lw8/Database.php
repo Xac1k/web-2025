@@ -1,5 +1,8 @@
 <?php
 
+require_once "../utils.php";
+const FILE_ERROR_UNKNOWN_USER = 'unknownUser.png';
+
 function connectDataBase(): PDO
 {
     $dsn = 'mysql:host=127.0.0.1;dbname=blog';
@@ -55,10 +58,10 @@ function getOneRecordFromUserPostURL(array $user, array $post, array $urls): arr
     //[urls] => ( [0] => post1.png) )
 
     $res['name'] = $user[0]['name'];
-    $res['img_avatar'] = $user[0]['img_avatar'];
-    $res['text'] = $post['text'];
+    $res['img_avatar'] = getOrDefault($user[0]['img_avatar'], FILE_ERROR_UNKNOWN_USER);
+    $res['text'] = getOrDefault($post['text'], "");
     $res['created_time'] = strtotime($post['created_time']);
-    $res['like'] = $post['likes'];
+    $res['like'] = getOrDefault($post['likes'], 0);
     $res['urls'] = [];
     foreach ($urls as $url) {
         array_push($res['urls'], $url['url']);

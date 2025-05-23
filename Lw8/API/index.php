@@ -1,6 +1,6 @@
 <?php
 
-require_once "Database.php";
+require_once "../Database.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -10,7 +10,7 @@ if (isset($_GET['id']) && (strlen(trim($_GET['id'])) != 0)) {
     if (isset($_POST['text'])){
         if (($_FILES['img']['size'] < 100 * 1024 * 1024) && $_FILES['img']['type'] == 'image/png') {
             $nameFile = uniqid().'.png';
-            move_uploaded_file($_FILES['img']['tmp_name'], 'image/' . $nameFile);
+            move_uploaded_file($_FILES['img']['tmp_name'], '../image/' . $nameFile);
 
             //Print some information
             echo '<br>id=' . $_GET['id'] . '<br>';
@@ -20,6 +20,8 @@ if (isset($_GET['id']) && (strlen(trim($_GET['id'])) != 0)) {
             //save Post In DB
             $DB = connectDataBase();
             putPostDB($DB, $_GET['id'], $nameFile, $_POST['text']);
+
+            header("Refresh: 2; url=http://localhost:8001/AddPost?id={$_GET['id']}");
         } else {
             echo 'Разрем изображения превышает 100 мб';
         }
