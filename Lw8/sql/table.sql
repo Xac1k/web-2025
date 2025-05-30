@@ -1,23 +1,25 @@
 CREATE TABLE post (
-    id INT UNSIGNED AUTO_INCREMENT, 
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT, 
     created_by INT UNSIGNED NOT NULL, 
-    image VARCHAR(255), 
     text TEXT, 
     created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     likes INT UNSIGNED, 
     PRIMARY KEY (id)
 );
 
-CREATE TABLE images (
-    id INT UNSIGNED AUTO_INCREMENT, 
+CREATE TABLE image (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT, 
     post_id INT UNSIGNED NOT NULL, 
     url VARCHAR(255) NOT NULL, 
     PRIMARY KEY(id)
 );
 
 CREATE TABLE user (
-    id INT UNSIGNED AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     img_avatar VARCHAR(255),
-    text TEXT,
-    name VARCHAR(100) NOT NULL  
+    description TEXT,
+    name VARCHAR(100) NOT NULL,
+    password TEXT NOT NULL,
+    email TEXT NOT NULL,
+    PRIMARY KEY(id)  
 );

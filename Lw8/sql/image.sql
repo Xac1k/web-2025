@@ -1,4 +1,4 @@
-INSERT INTO images(
+INSERT INTO image(
     post_id,
     url
 )

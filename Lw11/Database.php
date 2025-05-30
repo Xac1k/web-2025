@@ -1,5 +1,7 @@
 <?php
 
+require_once "utils.php";
+
 function connectDataBase(): PDO
 {
     $dsn = 'mysql:host=127.0.0.1;dbname=blog';
@@ -15,7 +17,7 @@ function getPostsFromDB(PDO $con): array
         FROM post
     SQL;
 
-    $result = $con->query($queryToPost);
+    $result = $con->query(query: $queryToPost);
     return ($result->fetchAll(mode: PDO::FETCH_ASSOC));
 }
 
@@ -61,7 +63,8 @@ function getOneRecordFromUserPostURL(array $user, array $post, array $urls): arr
     $res['like'] = $post['likes'];
     $res['urls'] = [];
     foreach ($urls as $url) {
-        array_push($res['urls'], $url['url']);
+        if (isImageFormatSupported($url['url']) && !empty(glob("../image/{$url['url']}"))) array_push($res['urls'], $url['url']);
+        else array_push($res['urls'], "default_img.png");
     }
 
     return $res;

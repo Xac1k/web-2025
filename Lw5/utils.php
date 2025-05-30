@@ -8,15 +8,18 @@ function getUserInfo(array $users, string $id): array|bool
 {
     foreach ($users as $user) {
         if ($user['id'] == $id) {
-            $name = getOrDefault($user['name'], null);
-            $img_avatar = getOrDefault($user['img_avatar'], FILE_ERROR_UNKNOWN_USER);
-            $description = getOrDefault($user['description'], null);
+            if (isset($user['name']))
+            {
+                $name = $user['name'];
+                $img_avatar = getOrDefault($user['img_avatar'], FILE_ERROR_UNKNOWN_USER);
+                $description = getOrDefault($user['description'], null);
 
-            return [
-                'name' => $name,
-                'image' => $img_avatar,
-                'description' => $description
-            ];
+                return [
+                    'name' => $name,
+                    'image' => $img_avatar,
+                    'description' => $description
+                ];
+            }
         }
     }
     return false;

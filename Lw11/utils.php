@@ -6,12 +6,6 @@ function getOrDefault(&$value, $default): mixed
 
 function isImageFormatSupported(?string &$url): bool
 {
-    if (!isset($url))
-        return false;
+    if (!isset($url)) return false;
     return preg_match('/^\w+.png$/u', $url);
-}
-
-function IsIntoStorage(string $url): bool
-{
-    return !empty(glob("../image/{$url}"));
 }

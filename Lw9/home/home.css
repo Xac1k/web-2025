@@ -41,7 +41,7 @@ body {
     margin: 14px 0;
 }
 
-.post-frame__foto {
+.post-frame__avatar {
     width: 32px;
     height: 32px;
     border-radius: 6px;
@@ -63,14 +63,14 @@ body {
     height: 24px;
 }
 
-.post-frame__post {
+.post-frame__images {
     position: relative;
     width: 474px;
     height: 474px;
     margin-bottom: 16px;
 }
 
-.post-frame__images {
+.post-frame__image {
     width: 474px;
     height: 474px;
 }

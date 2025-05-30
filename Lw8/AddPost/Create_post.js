@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const elem = document.getElementById('load-file');
     const picture = document.getElementById('loading-file');
     const submite = document.getElementById('submite');
-    const text = document.getElementById('text-field');
     const load_button = document.getElementById('load_button');
     const load_img = document.getElementById('load_img');
 
@@ -19,18 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         picture.style.boxShadow = '';
         console.log(imageURL);
 
-        if (text.value.length != 0) {
-            submite.style.backgroundColor = '#222222';
-        }
-    });
-
-    text.addEventListener('input', function() {
-        if (elem.files[0] != undefined) {
-            submite.style.backgroundColor = '#222222';
-        }
-        if (text.value.length == 0) {
-            submite.style.backgroundColor = '';
-        }
+        submite.style.backgroundColor = '#222222';
     });
 
     submite.addEventListener('click', function () {

@@ -1,12 +1,7 @@
 <?php
 
-const FILE_USERS = 'users.json';
-const FILE_POSTS = 'posts.json';
-
-
-require_once '../Database.php';
+require_once '../database.php';
 require_once 'templeteHome.php';
-require_once '../utils.php';
 
 function getDiferenceTime(int $created_time): string
 {
@@ -15,27 +10,45 @@ function getDiferenceTime(int $created_time): string
 }
 
 $DB = connectDataBase();
-$query = isset($_GET['id']) && is_numeric($_GET['id']) ? $_GET['id'] : null;
+$isInt = isset($_GET['id']) && preg_match("/^[0-9]*$/", $_GET['id']);
+$query = isset($_GET['id']) && is_numeric($_GET['id']) && $isInt ? $_GET['id'] : null;
 
-if (!is_bool($DB)) {
-    include "home.html";
-    $posts = getPostsFromDB($DB);
-    $res = '';
+if ($query && !userIntoDB($DB, $query)) {
+    require_once '../notFoundResponse.php';
+    printError("404");
+}
 
-    if (is_array($posts)) {
-        foreach ($posts as $post) {
-            $user = getUserFromDB($DB, $post['created_by']);
-            if($user){
-                $urls = getURLImages($DB, $post['id']);
-                $infoPost = getOneRecordFromUserPostURL($user, $post, urls: $urls);
-                $infoPost['time'] = getDiferenceTime($infoPost['created_time']);
-                
-                if ($user[0]['id'] == $query || !$query) {
-                    $res .= getHTMLPost($infoPost);
-                }
-            }
+if (isset($_GET['id']) && !$isInt) {
+    require_once '../notFoundResponse.php';
+    printError("400");
+}
+
+if(!$DB) {
+    require_once '../notFoundResponse.php';
+    printError("503");
+}
+
+include_once 'home.html';
+$res = '';
+
+if ($query) {
+    $posts = getInfoFromDB($DB, 'post', ['*'], "created_by = $query");
+}
+else
+{
+    $posts = getInfoFromDB($DB, 'post', ['*']);
+}
+
+foreach ($posts as $post) {
+    $user = getInfoFromDB($DB, 'user', ['id', 'img_avatar', 'name'], "id={$post['created_by']}");
+    if (!empty($user)) {
+        $urls = getInfoFromDB($DB, 'image', ['url'], "post_id={$post['id']}");
+        $infoPost = mergeDataUserPostURL($user, $post, $urls);
+        $infoPost['time'] = getDiferenceTime($infoPost['created_time']);
+
+        if ($user[0]['id'] == $query || !$query) {
+            $res .= getHTMLPost($infoPost);
         }
-
-        echo "<div class='frames'>".$res."</div>";
     }
 }
+echo "<div class='frames'>" . $res . "</div>";

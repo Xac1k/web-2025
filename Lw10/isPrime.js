@@ -1,12 +1,35 @@
-function isPrimeNumber(n) { //сдать на следующей лабе 10.1
+function isPrimeNumber(n) { //сдано
     if (Array.isArray(n)) {
-        for (let i = 0; i < n.length; i++) {
-            if (Number.isInteger(n[i])) printMSG(isPrimeOneNum(n[i]), n[i])
-            else console.log(`Ошибка типа данных. '${n[i]}' не является числом`)
+        if (n.length != undefined)
+        {
+            for (let i = 0; i < n.length; i++) {
+                if (Number.isInteger(n[i])) 
+                {
+                    printMSG(isPrimeOneNum(n[i]), n[i])
+                }
+                else 
+                {
+                    console.log(`Ошибка типа данных. '${n[i]}' не является числом`)
+                }
+            }
+        }
+        else 
+        {
+            console.log('Ошибка типа данных. Обнаружен Object')
         }
     }
-    else if (Number.isInteger(n[i])) printMSG(isPrimeOneNum(n), n)
-    else console.log(`Ошибка типа данных. ${n} не является число или массивом числе`)
+    else
+    {
+        if (Number.isInteger(n)) 
+        {
+            printMSG(isPrimeOneNum(n), n)
+        }
+        else 
+        {
+            console.log(`Ошибка типа данных. ${n} не является число или массивом числе`)
+        }
+    }
+    
 }
 
 function isPrimeOneNum(n) {
@@ -29,4 +52,4 @@ function printMSG(isPrime, n) {
     }
 }
 
-isPrimeNumber({})
+isPrimeNumber(true)

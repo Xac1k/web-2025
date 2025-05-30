@@ -28,29 +28,32 @@ $posts = file_get_contents(FILE_POSTS);
 $users = json_validate($users) ? json_decode($users, true) : false;
 $posts = json_validate($posts) ? json_decode($posts, true) : false;
 
-$query = isset($_GET['id']) && is_numeric($_GET['id']) ? $_GET['id'] : null;
+$query = isset($_GET['id']) && is_numeric($_GET['id']) && preg_match('/^\d+$/', $_GET['id']) ? $_GET['id'] : null;
 $hasQuery = !is_null($query);
 
 if (!is_bool($users) && !is_bool($posts)) {
     include "home.html";
     include_once "templatePost.php";
     $res = '';
-    foreach ($posts as $post) {
+    foreach ($posts as $post)
+    {
         $idUser = $post['created_by_id_user'];
 
-        if ($hasQuery) {
+        if ($hasQuery) 
+        {
             if (is_bool(getUserInfo($users, $query))) {
                 echo "<p style = 'text-align: center;' >Такого пользователя нет</p>";
                 break;
             }
         }
 
-        if (($query === $idUser) || !$hasQuery) {
+        if (($query === $idUser) || !$hasQuery) 
+        {
             $userInfo = getUserInfo($users, $idUser);
             $postInfo = getPostInfo($post);
 
             if (is_array($userInfo)) {
-                $res .= renderPost($userInfo, $postInfo);
+                $res .= renderPost( $userInfo, $postInfo);
             }
         }
     }

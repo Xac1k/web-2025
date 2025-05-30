@@ -1,5 +1,5 @@
 <?php
-require_once 'Database.php';
+require_once '../Database.php';
 
 function getDiferenceTime(int $created_time): string
 {
@@ -7,8 +7,9 @@ function getDiferenceTime(int $created_time): string
     return "$time" . ' ч назад';
 }
 
-function getImageHTML(array $urls): string {
-    foreach($urls as $url){
+function getImageHTML(array $urls): string
+{
+    foreach ($urls as $url) {
         if (isset($res)) {
             $res .= <<<HTML
                     <img src="../image/{$url}" alt="Фото поста" class="post-frame__images post-frame__images_hidden">
@@ -22,7 +23,8 @@ function getImageHTML(array $urls): string {
     return $res;
 }
 
-function getPostImageFrame(array $data): array {
+function getPostImageFrame(array $data): array
+{
     if (count($data['urls']) > 1) {
         $count = count($data['urls']);
         $slider = <<<HTML
@@ -38,8 +40,10 @@ function getPostImageFrame(array $data): array {
         $slider = '';
     }
 
-    return ['imageHTML' => $imageHTML,
-            'slider' => $slider];
+    return [
+        'imageHTML' => $imageHTML,
+        'slider' => $slider
+    ];
 }
 
 function getHTMLPost(array $data): string
@@ -76,7 +80,7 @@ $DB = connectDataBase();
 $query = isset($_GET['id']) && is_numeric($_GET['id']) ? $_GET['id'] : null;
 
 if (!is_bool($DB)) {
-    include "home/home.html";
+    include "home.html";
     $modifierPost = 'first';
     $posts = getPostsFromDB($DB);
 
@@ -84,19 +88,20 @@ if (!is_bool($DB)) {
         $resHTML = '';
         foreach ($posts as $post) {
             $user = getUserFromDB($DB, $post['created_by']);
+            if (empty($user)) continue;
             $urls = getURLImages($DB, $post['id']);
-            $infoPost = getOneRecordFromUserPostURL($user, $post, urls: $urls);
+            $infoPost = getOneRecordFromUserPostURL($user, $post, $urls);
             $time = getDiferenceTime($infoPost['created_time']);
 
             $info = $infoPost;
             $info['modifierPost'] = $modifierPost;
             $info['time'] = $time;
-            
-            if ($user[0]['id'] == $query OR is_null($query)) {
-                $resHTML.= getHTMLPost($info);
+
+            if ($user[0]['id'] == $query or is_null($query)) {
+                $resHTML .= getHTMLPost($info);
                 $modifierPost = '';
             }
         }
-        echo "<div class='working-frame'>".$resHTML."<div class='modal-frame_hidden'></div>".'</div>';
+        echo "<div class='working-frame'>" . $resHTML . "<div class='modal-frame_hidden'></div>" . '</div>';
     }
 }
